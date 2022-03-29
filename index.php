@@ -1,3 +1,6 @@
+<?php
+// Buat page awal
+?>
 <!DOCTYPE html>
 <html lang="en">
 
