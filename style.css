@@ -11,9 +11,24 @@ img {
     max-width: 10rem;
     margin: auto;
     text-align: center;
-  }
-  
-  .title {
+}
+
+.title {
     color: grey;
     font-size: 18px;
-  }
+}
+
+.flexbox {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.home-p {
+    font-size: 2rem;
+}
+
+.but-mar {
+    margin: 0rem 1rem;
+}
