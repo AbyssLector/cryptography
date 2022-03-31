@@ -38,13 +38,13 @@
                     <div class="input-field col s6">
                         <input placeholder="1hdmq9214" id="input-chiper" type="text" name="cipher_text"
                             class="validate">
-                        <label for="input-chiper">Chipher Text</label>
+                        <label for="input-chiper">Chipher Text (must enter 16 characters)</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s6">
                         <input placeholder="8 karakter" id="input_key" type="text" name="key" class="validate">
-                        <label for="input_key">Key</label>
+                        <label for="input_key">Key (must enter 16 characters)</label>
                     </div>
                 </div>
                 <div class="row">
@@ -73,7 +73,7 @@
             var text = document.getElementById("plain");
 
             text.select();
-            
+
             navigator.clipboard.writeText(text.value);
 
             alert("Copied the text: " + text.value);
