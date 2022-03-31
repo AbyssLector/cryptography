@@ -24,6 +24,7 @@ ScriptInterpreterSource Registry-Strict
 contoh : <br>
 `#!C:\xampp\htdocs\cryptography\Env\Scripts\python.exe`
 <br>
+
 ***Masukkan path python yang sudah ada dalam folder `Env`***
 
 
@@ -33,5 +34,5 @@ Baru install pake `pip install nama_package`
 
 ### Yang kurang
 
-- Form input buat crypt & decrypt gambar AES 
+- Form input buat crypt & decrypt gambar AES
 - Controller (proses enkripsinya) buat crypt & decrypt gambar AES 
