@@ -1,1 +1,0 @@
-#  Front end text DES
