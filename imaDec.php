@@ -1,38 +1,15 @@
-#!C:\xampp\htdocs\cryptography\Env\Scripts\python.exe
-from Crypto.Util.Padding import pad, unpad
-from Crypto.Cipher import AES
-import cgi
-print("Content-type: text/html\n\n")
+<?php
+if (isset($_POST['submit'])) {
+    $info = pathinfo($_FILES['plain_img']['name']);
+    $ext = $info['extension']; // get the extension of the file
+    $newname = "cipher_img." . $ext;
 
-def encrypt_image(filename, key, iv):
+    // $target = 'images/' . $newname;
+    move_uploaded_file($_FILES['plain_img']['tmp_name'], $newname);
+    header("location: imadec2.html");
+}
 
-    BLOCKSIZE = 16
-    encrypted_filename = "encrypted_" + filename
-
-    with open(filename, "rb") as file1:
-        data = file1.read()
-
-        cipher = AES.new(key, AES.MODE_CBC, iv)
-        ciphertext = cipher.encrypt(pad(data, BLOCKSIZE))
-
-        with open(encrypted_filename, "wb") as file2:
-            file2.write(ciphertext)
-
-    return encrypted_filename
-
-
-
-filename = "plain_img.jpg"
-
-form = cgi.FieldStorage()
-key = form.getvalue('key')
-
-key = key.encode()
-iv = b'0000000000000000'
-
-encrypted_filename = encrypt_image(filename, key, iv)
-
-html = """
+?>
 <!-- Buat page awal -->
 <!DOCTYPE html>
 <html lang="en">
@@ -41,7 +18,7 @@ html = """
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image | Decryption</title>
+    <title>Image | Encryption</title>
 
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -65,17 +42,23 @@ html = """
 
     <div class="container">
         <div class="row">
-            <h4>Decrypted Image</h4>
+            <h4>Image Decryption</h4>
         </div>
         <div class="row">
-            <div class="col">Output: </div>
-        </div>
-        <div class="row">
-            <div class="col s6">
-                <div class="card-panel">
-                    <a href="encrypted_plain_img.jpg">Output</a>
+            <form class="col s12" action="#" method="post" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col s6">
+                        <!-- <input type="file" name="plain_img"> -->
+                        <input type="file" accept="image/*" name="plain_img" id="plain_img" onchange="loadFile(event)">
+                        <img id="output" width="200" />
+                    </div>
                 </div>
-            </div>
+                <div class="row">
+                    <div class="col s6">
+                        <input type="submit" name="submit" class="btn waves-effect waves-light red">
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 
@@ -86,5 +69,3 @@ html = """
 </body>
 
 </html>
-"""
-print(html)
