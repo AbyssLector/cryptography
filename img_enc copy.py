@@ -1,36 +1,40 @@
 #!C:\xampp\htdocs\cryptography\Env\Scripts\python.exe
-from Crypto.Util.Padding import pad, unpad
+import numpy as np
+import random
 from Crypto.Cipher import AES
+from Crypto import Random
+import cv2
 import cgi
 print("Content-type: text/html\n\n")
 
-def encrypt_image(filename, key, iv):
-
-    BLOCKSIZE = 16
-    encrypted_filename = "encrypted_" + filename
-
-    with open(filename, "rb") as file1:
-        data = file1.read()
-
-        cipher = AES.new(key, AES.MODE_CBC, iv)
-        ciphertext = cipher.encrypt(pad(data, BLOCKSIZE))
-
-        with open(encrypted_filename, "wb") as file2:
-            file2.write(ciphertext)
-
-    return encrypted_filename
-
-
-
-filename = "plain_img.jpg"
-
 form = cgi.FieldStorage()
+
 key = form.getvalue('key')
 
+img=cv2.imread('plain_img.jpg',1)#read image
+na = np.array(img)#conver it to array
+x, y ,pp= img.shape[:3]#size of 3d
+gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+blue= np.array(range(x*y), int).reshape((x, y))
+enc_blue= np.array(range(x*y), int).reshape((x, y))
+blue[:,:]=gray[:, :]
 key = key.encode()
-iv = b'0000000000000000'
+iv=b'0000000000000000'
+cipher = AES.new(key, AES.MODE_CFB, iv)
+L2=[]
+blue1 = np.array(range(x),int)
+for i in range(x):
+    blue1=blue[i,:].tolist()
+    blue2=bytes(blue1)
+    msg =  cipher.encrypt(blue2)
+    for p in msg:
+        L2 += [(p)]
+    enc_blue[i,:]=L2[:]
+    L2=[]
 
-encrypted_filename = encrypt_image(filename, key, iv)
+
+
+cv2.imwrite('cipher_img.jpg', enc_blue)
 
 html = """
 <!-- Buat page awal -->
@@ -73,7 +77,7 @@ html = """
         <div class="row">
             <div class="col s6">
                 <div class="card-panel">
-                    <a href="encrypted_plain_img.jpg">Output</a>
+                    <img src="cipher_img.jpg">
                 </div>
             </div>
         </div>

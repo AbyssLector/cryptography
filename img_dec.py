@@ -4,25 +4,24 @@ from Crypto.Cipher import AES
 import cgi
 print("Content-type: text/html\n\n")
 
-def encrypt_image(filename, key, iv):
+def decrypt_image(filename, key, iv):
 
     BLOCKSIZE = 16
-    encrypted_filename = "encrypted_" + filename
+    decrypted_filename = "decrypted_" + filename
 
     with open(filename, "rb") as file1:
         data = file1.read()
 
-        cipher = AES.new(key, AES.MODE_CBC, iv)
-        ciphertext = cipher.encrypt(pad(data, BLOCKSIZE))
+        cipher2 = AES.new(key, AES.MODE_CBC, iv)
+        decrypted_data = unpad(cipher2.decrypt(data), BLOCKSIZE)
 
-        with open(encrypted_filename, "wb") as file2:
-            file2.write(ciphertext)
+        with open(decrypted_filename, "wb") as file2:
+            file2.write(decrypted_data)
 
-    return encrypted_filename
+    return decrypted_filename
 
 
-
-filename = "plain_img.jpg"
+filename = "cipher_img.jpg"
 
 form = cgi.FieldStorage()
 key = form.getvalue('key')
@@ -30,8 +29,7 @@ key = form.getvalue('key')
 key = key.encode()
 iv = b'0000000000000000'
 
-encrypted_filename = encrypt_image(filename, key, iv)
-
+decrypted_filename = decrypt_image(filename, key, iv)
 html = """
 <!-- Buat page awal -->
 <!DOCTYPE html>
@@ -73,7 +71,7 @@ html = """
         <div class="row">
             <div class="col s6">
                 <div class="card-panel">
-                    <a href="encrypted_plain_img.jpg">Output</a>
+                    <img src="decrypted_cipher_img.jpg">
                 </div>
             </div>
         </div>
