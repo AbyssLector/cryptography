@@ -11,6 +11,7 @@ form = cgi.FieldStorage()
 raw = form.getvalue('plain_text')
 
 key = form.getvalue('key')
+
 # Hexadecimal to binary conversion
 def hex2bin(s):
 	mp = {'0' : "0000",
@@ -236,7 +237,7 @@ def encrypt(pt, rkb, rk):
 	return cipher_text
 
 pt = raw
-key = key
+# key = key
 
 # Key generation
 # --hex to binary
@@ -295,7 +296,7 @@ for i in range(0, 16):
 cipher_text = bin2hex(encrypt(pt, rkb, rk))
 
 html_text = """
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -326,21 +327,21 @@ html_text = """
 
     <div class="container">
         <div class="row">
-            <h2>Text Encryption</h2>
+            <h4>Text Encryption</h4>
         </div>
         <div class="row">
-            <form class="col s12" action="text_des.py" method="post">
+            <form class="col s12" action="text_enc.py" method="post">
                 <div class="row">
                     <div class="input-field col s6">
                         <input placeholder="BekantanLepas" id="input_text" type="text" name="plain_text"
                             class="validate">
-                        <label for="input_text">Plain Text</label>
+                        <label for="input_text">Plain Text (must enter 16 characters)</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s6">
                         <input placeholder="8 karakter" id="input_key" type="text" name="key" class="validate">
-                        <label for="input_key">Key</label>
+                        <label for="input_key">Key (must enter 16 characters)</label>
                     </div>
                 </div>
                 <div class="row">
@@ -349,15 +350,20 @@ html_text = """
                     </div>
                 </div>
             </form>
-            <h4>{}</h4>
+        </div>
+        <div class="row">
+            <div class="col">Chiper Text: </div>
+        </div>
+        <div class="row">
+            <div class="col s6">
+                <!-- Masukkin output di value -->
+                <input type="text" value="{}" id="chiper">
+            </div>
         </div>
     </div>
-
-
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
-
 </html>
 """.format(cipher_text)
 print(html_text)
