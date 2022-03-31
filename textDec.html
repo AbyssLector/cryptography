@@ -54,8 +54,31 @@
                 </div>
             </form>
         </div>
+        <div class="row">
+            <div class="col">Plain Text: </div>
+        </div>
+        <div class="row">
+            <div class="col s6">
+                <!-- Masukkin output di value -->
+                <input type="text" value="Output" id="plain">
+            </div>
+            <div class="col s6">
+                <button class="btn waves-effect waves-light red" onclick="copyText()">Copy Plain Text</button>
+            </div>
+        </div>
     </div>
 
+    <script>
+        function copyText() {
+            var text = document.getElementById("plain");
+
+            text.select();
+            
+            navigator.clipboard.writeText(text.value);
+
+            alert("Copied the text: " + text.value);
+        }
+    </script>
 
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
