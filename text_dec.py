@@ -298,7 +298,7 @@ rk_rev = rk[::-1]
 plain_text = bin2hex(encrypt(cipher_text, rkb_rev, rk_rev))
 
 html_text = """
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -329,21 +329,21 @@ html_text = """
 
     <div class="container">
         <div class="row">
-            <h2>Text Encryption</h2>
+            <h4>Text Decryption</h4>
         </div>
         <div class="row">
-            <form class="col s12" action="text_des.py" method="post">
+            <form class="col s12" action="text_dec.py" method="post">
                 <div class="row">
                     <div class="input-field col s6">
-                        <input placeholder="BekantanLepas" id="input_text" type="text" name="plain_text"
+                        <input placeholder="1hdmq9214" id="input-chiper" type="text" name="cipher_text"
                             class="validate">
-                        <label for="input_text">Plain Text</label>
+                        <label for="input-chiper">Chipher Text (must enter 16 characters)</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s6">
                         <input placeholder="8 karakter" id="input_key" type="text" name="key" class="validate">
-                        <label for="input_key">Key</label>
+                        <label for="input_key">Key (must enter 16 characters)</label>
                     </div>
                 </div>
                 <div class="row">
@@ -352,15 +352,20 @@ html_text = """
                     </div>
                 </div>
             </form>
-            <h4>{}</h4>
+        </div>
+        <div class="row">
+            <div class="col">Plain Text: </div>
+        </div>
+      	<div class="row">
+            <div class="col s6">
+                <!-- Masukkin output di value -->
+                <input type="text" value="{}" id="chiper">
+            </div>
         </div>
     </div>
-
-
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
-
 </html>
 """.format(plain_text)
 print(html_text)
