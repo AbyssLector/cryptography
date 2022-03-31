@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Text | Encryption</title>
+    <title>Image | Decryption</title>
 
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -30,15 +30,13 @@
 
     <div class="container">
         <div class="row">
-            <h4>Text Encryption</h4>
+            <h4>Image Decryption</h4>
         </div>
         <div class="row">
-            <form class="col s12" action="text_enc.py" method="post">
+            <form class="col s12" action="#" method="post">
                 <div class="row">
                     <div class="input-field col s6">
-                        <input placeholder="BekantanLepas" id="input_text" type="text" name="plain_text"
-                            class="validate">
-                        <label for="input_text">Plain Text (must enter 16 characters)</label>
+                        <input type="file" name="chiper_img">
                     </div>
                 </div>
                 <div class="row">
@@ -55,7 +53,7 @@
             </form>
         </div>
         <div class="row">
-            <div class="col">Chiper Text: </div>
+            <div class="col">Output: </div>
         </div>
         <div class="row">
             <div class="col s6">
@@ -64,6 +62,7 @@
             </div>
         </div>
     </div>
+
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
