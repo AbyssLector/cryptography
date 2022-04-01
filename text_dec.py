@@ -1,7 +1,7 @@
 #!C:\xampp\htdocs\cryptography\Env\Scripts\python.exe
 from email import message
-from Crypto.Cipher import DES
-from Crypto.Util.Padding import pad
+# from Crypto.Cipher import DES
+# from Crypto.Util.Padding import pad
 import cgi
 import base32hex
 import hashlib

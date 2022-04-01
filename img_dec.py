@@ -29,7 +29,12 @@ key = form.getvalue('key')
 key = key.encode()
 iv = b'0000000000000000'
 
-decrypted_filename = decrypt_image(filename, key, iv)
+try:
+    decrypted_filename = decrypt_image(filename, key, iv)
+except Exception as e:
+    print(f'Error: {e}')
+    quit()
+
 html = """
 <!-- Buat page awal -->
 <!DOCTYPE html>

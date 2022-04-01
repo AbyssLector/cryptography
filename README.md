@@ -27,12 +27,8 @@ contoh : <br>
 
 ***Masukkan path python yang sudah ada dalam folder `Env`***
 
+Buat Env `python -m venv Env`. Pastikan root terminalnya sama dengan folder ini
 
 Trus kalo mau install packages python, kasih tau terminal (vscode) kalo kita mau installnya di python `Env` <br>
 Pake syntax `Env\Scripts\activate`. Nanti bakal ada `(Env)` di terminal. <br>
 Baru install pake `pip install nama_package`
-
-### Yang kurang
-
-- Form input buat crypt & decrypt gambar AES
-- Controller (proses enkripsinya) buat crypt & decrypt gambar AES 
